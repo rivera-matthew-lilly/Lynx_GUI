@@ -18,17 +18,24 @@ desTypeSelected = input("Select destination plate type: ")
 tipTypeSelected = input("Select tip type: ")
 #number of plates to be ran (numerical choices: 1-4) (required input)
 numberOfPlates = int(input("Enter Number of source plates to normalize: "))
-#ask user if files are to bee uploaded (radio button: True/False)
-fileBasedNorm = bool(input("Is this a file based normalizaton ('True' or 'False')?: "))
 #ask user if normalized samples need to be transfer to Echo plate
-bCreateEcho = bool(input("Transfer to Echo plate ('True' or 'False')?: "))
-advancedVariables = bool(input("Would you like to adjust advanced settings ('True' or 'False)?: "))
+bCreateEcho = input("Transfer to Echo plate ('yes' or 'no')?: ")
+#ask user if files are to bee uploaded (radio button: True/False)
+fileBasedNorm = input("Is this a file based normalizaton ('yes' or 'no')?: ")
 
-#build worktable path
-worktableDefaultPath = "C:\MethodManager4\Workspaces\LO507\Methods\Production\Worktables\\"
-worktableCustomPath = (worktableDefaultPath + tipTypeSelected + "_" + sourceTypeSelected + "_" + desTypeSelected + ".worktable.Lynx.Left.worktable")
+if fileBasedNorm == "yes":
+    targetVol = int(input("Target volume (100-200uL): "))
 
-if advancedVariables == True:
+    targetConc = int(input("Target concentration (1-200ug/mL): "))
+
+    neatVol = int(input("Volume for neat transfers (75-200uL): "))
+else:
+    #Final Plate concentration (units = ug/mL) (required input)
+    targetConc = input("Final plate concentration?")
+
+advancedVariables = input("Would you like to adjust advanced settings ('yes' or 'no)?: ")
+
+if advancedVariables == "yes":
     #ask user if they want to mix (defualt = yes/true)
     bMix = input("Mix plates (8 cycles) after normalization ('yes' or 'no')?: ")
     #ask user to dded mix height offset variable - numerical choice (default = 1.0 mm) (min = 0.0 mm max=5.0 mm) (increment by 0.1 mm)
@@ -40,57 +47,7 @@ else:
     intMixHeightOffset = 1
     mixVol = 100
 
-if fileBasedNorm == True:
-    targetVol = int(input("Target volume (100-200uL): "))
-
-    targetConc = int(input("Target concentration (1-200ug/mL): "))
-
-    neatVol = int(input("Volume for neat transfers (75-200uL): "))
-
-    inputFile = "C:\codeBASE\Lynx\input_for_dil_sol_files.csv"
-else:
-    #Final Plate concentration (units = ug/mL) (required input)
-    targetConc = input("Final plate concentration?")
-
 ##########################################################
-
-
-#trim down the octet output file into 4 plate list
-octetFilePath = "C:\codeBASE\Lynx\octet_results_sheet.csv"
-#"C:\codeBASE\Lynx\octet_report"
-
-octetQuants = []
-with open(octetFilePath, "r") as f:
-    file_reader = reader(f)
-    counter = 0
-    for i in file_reader:
-        if counter != 0 and counter < 385:
-            octetConc = i[12]
-            counter = counter + 1
-            octetQuants.append(octetConc)
-        else:
-            counter = counter + 1
-
-
-plate1 = []
-plate2 = []
-plate3 = []
-plate4 = []
-
-for i in range(0,96):
-    myQuant = octetQuants[i]
-    plate1.append(myQuant)
-for i in range(96,192):
-    myQuant = octetQuants[i]
-    plate2.append(myQuant)
-for i in range(192,288):
-    myQuant = octetQuants[i]
-    plate3.append(myQuant)
-for i in range(288,384):
-    myQuant = octetQuants[i]
-    plate4.append(myQuant)
-################################################
-
 
 #functions to handel data inflow and parameters entered by user
 def supCalc(targetConc, targetVol, quantConc, neatVol):
@@ -160,20 +117,58 @@ def inputCSVFileWriter(supWriteToLocation, dilWriteToLocation, supLst, dilLst):
         plateFormatFileWriter(writer, dilLst)
 ################################################
 
-#edited from orginal to no longer look at file but rather consume list made via python
-supVolListPlate1 = []
-dilVolListPlate1 = []
-supVolListPlate2 = []
-dilVolListPlate2 = []
-supVolListPlate3 = []
-dilVolListPlate3 = []
-supVolListPlate4 = []
-dilVolListPlate4 = []
+#trim down the octet output file into 4 plate list
+octetFilePath = "C:\codeBASE\Lynx\octet_results_sheet_1plate.csv"
+#"C:\codeBASE\Lynx\octet_report"
 
-volListCreation(plate1, targetConc, targetVol, neatVol, supVolListPlate1, dilVolListPlate1)
-volListCreation(plate2, targetConc, targetVol, neatVol, supVolListPlate2, dilVolListPlate2)
-volListCreation(plate3, targetConc, targetVol, neatVol, supVolListPlate3, dilVolListPlate3)
-volListCreation(plate4, targetConc, targetVol, neatVol, supVolListPlate4, dilVolListPlate4)
+octetQuants = []
+with open(octetFilePath, "r") as f:
+    file_reader = reader(f)
+    counter = 0
+    for i in file_reader:
+        if counter != 0 and counter < 385:
+            octetConc = i[12]
+            counter = counter + 1
+            octetQuants.append(octetConc)
+        else:
+            counter = counter + 1
+
+print(octetQuants)
+plate1 = []
+plate2 = []
+plate3 = []
+plate4 = []
+
+for i in range(0,96):
+    myQuant = octetQuants[i]
+    plate1.append(myQuant)
+for i in range(96,192):
+    myQuant = octetQuants[i]
+    plate2.append(myQuant)
+for i in range(192,288):
+    myQuant = octetQuants[i]
+    plate3.append(myQuant)
+for i in range(288,384):
+    myQuant = octetQuants[i]
+    plate4.append(myQuant)
+################################################
+
+if numberOfPlates >= 1:
+    supVolListPlate1 = []
+    dilVolListPlate1 = []
+    volListCreation(plate1, targetConc, targetVol, neatVol, supVolListPlate1, dilVolListPlate1)
+if numberOfPlates >= 2:
+    supVolListPlate2 = []
+    dilVolListPlate2 = []
+    volListCreation(plate2, targetConc, targetVol, neatVol, supVolListPlate2, dilVolListPlate2)
+if numberOfPlates >= 3:
+    supVolListPlate3 = []
+    dilVolListPlate3 = []
+    volListCreation(plate3, targetConc, targetVol, neatVol, supVolListPlate3, dilVolListPlate3)
+if numberOfPlates >= 4:
+    supVolListPlate4 = []
+    dilVolListPlate4 = []
+    volListCreation(plate4, targetConc, targetVol, neatVol, supVolListPlate4, dilVolListPlate4)
 
 # print(len(supVolListPlate1))
 # print(len(dilVolListPlate1))
@@ -184,21 +179,29 @@ volListCreation(plate4, targetConc, targetVol, neatVol, supVolListPlate4, dilVol
 # print(len(supVolListPlate4))
 # print(len(dilVolListPlate4))
 
-SupCSVInputP1 = "C:\codeBASE\Lynx\output_Test_files\SupCSVInputP1_" + time + ".csv"
-DilCSVInputP1 =  "C:\codeBASE\Lynx\output_Test_files\DilCSVInputP1_" + time + ".csv"
-SupCSVInputP2 = "C:\codeBASE\Lynx\output_Test_files\SupCSVInputP2_" + time + ".csv"
-DilCSVInputP2 =  "C:\codeBASE\Lynx\output_Test_files\DilCSVInputP2_" + time + ".csv"
-SupCSVInputP3 = "C:\codeBASE\Lynx\output_Test_files\SupCSVInputP3_" + time + ".csv"
-DilCSVInputP3 =  "C:\codeBASE\Lynx\output_Test_files\DilCSVInputP3_" + time + ".csv"
-SupCSVInputP4 = "C:\codeBASE\Lynx\output_Test_files\SupCSVInputP4_" + time + ".csv"
-DilCSVInputP4 =  "C:\codeBASE\Lynx\output_Test_files\DilCSVInputP4_" + time + ".csv"
 
-inputCSVFileWriter(SupCSVInputP1, DilCSVInputP1, supVolListPlate1, dilVolListPlate1)
-inputCSVFileWriter(SupCSVInputP2, DilCSVInputP2, supVolListPlate2, dilVolListPlate2)
-inputCSVFileWriter(SupCSVInputP3, DilCSVInputP3, supVolListPlate3, dilVolListPlate3)
-inputCSVFileWriter(SupCSVInputP4, DilCSVInputP4, supVolListPlate4, dilVolListPlate4)
+if numberOfPlates >= 1:
+    SupCSVInputP1 = "C:\codeBASE\Lynx\output_Test_files\SupCSVInputP1_" + time + ".csv"
+    DilCSVInputP1 =  "C:\codeBASE\Lynx\output_Test_files\DilCSVInputP1_" + time + ".csv"
+    inputCSVFileWriter(SupCSVInputP1, DilCSVInputP1, supVolListPlate1, dilVolListPlate1)
+if numberOfPlates >= 2:
+    SupCSVInputP2 = "C:\codeBASE\Lynx\output_Test_files\SupCSVInputP2_" + time + ".csv"
+    DilCSVInputP2 =  "C:\codeBASE\Lynx\output_Test_files\DilCSVInputP2_" + time + ".csv"
+    inputCSVFileWriter(SupCSVInputP2, DilCSVInputP2, supVolListPlate2, dilVolListPlate2)
+if numberOfPlates >= 3:
+    SupCSVInputP3 = "C:\codeBASE\Lynx\output_Test_files\SupCSVInputP3_" + time + ".csv"
+    DilCSVInputP3 =  "C:\codeBASE\Lynx\output_Test_files\DilCSVInputP3_" + time + ".csv"
+    inputCSVFileWriter(SupCSVInputP3, DilCSVInputP3, supVolListPlate3, dilVolListPlate3)
+if numberOfPlates >= 4:
+    SupCSVInputP4 = "C:\codeBASE\Lynx\output_Test_files\SupCSVInputP4_" + time + ".csv"
+    DilCSVInputP4 =  "C:\codeBASE\Lynx\output_Test_files\DilCSVInputP4_" + time + ".csv"
+    inputCSVFileWriter(SupCSVInputP4, DilCSVInputP4, supVolListPlate4, dilVolListPlate4)
 
-if fileBasedNorm == True:
+#build worktable path
+worktableDefaultPath = "C:\MethodManager4\Workspaces\LO507\Methods\Production\Worktables\\"
+worktableCustomPath = (worktableDefaultPath + tipTypeSelected + "_" + sourceTypeSelected + "_" + desTypeSelected + ".worktable.Lynx.Left.worktable")
+
+if fileBasedNorm == "yes":
     data = {
         "sourceTypeSelected" : sourceTypeSelected,
         "desTypeSelected" : desTypeSelected,
