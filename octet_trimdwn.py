@@ -16,7 +16,6 @@ with open(octetFilePath, "r") as f:
         else:
             counter = counter + 1
 
-print(octetQuants)
 
 plate1 = []
 plate2 = []
@@ -37,9 +36,7 @@ for i in range(288,384):
     plate4.append(myQuant)
 
 
-print(plate1)
-print(plate2)
-print(plate3)
-print(plate4)
 
 #octet_trimdwn.py
+
+#./dL
