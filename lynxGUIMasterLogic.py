@@ -60,42 +60,19 @@ def supCalc(targetConc, targetVol, quantConc, neatVol):
     return finalSupVol
     
 
+
 def plateFormatFileWriter(writer, lst):
-        writer("VI;12;8")
-        for i in range(1, 13):
+    writer("VI;12;8")
+    for i in range(1, 13):
             writer("," + str(i))
+
+    aplhaList = ["A", "B", "C", "D", "E", "F", "G", "H"]
+    for i in range(0, 8):
         writer("\n")
-        writer("A")
-        for i in range(0, 96, 8):
-            writer("," + lst[i])
-        writer("\n")
-        writer("B")
-        for i in range(1, 96, 8):
-            writer("," + lst[i])
-        writer("\n")
-        writer("C")
-        for i in range(2,96, 8):
-            writer("," + lst[i])
-        writer("\n")
-        writer("D")
-        for i in range(3, 96, 8):
-            writer("," + lst[i])
-        writer("\n")
-        writer("E")
-        for i in range(4, 96, 8):
-            writer("," + lst[i])
-        writer("\n")
-        writer("F")
-        for i in range(5, 96, 8):
-            writer("," + lst[i])
-        writer("\n")
-        writer("G")
-        for i in range(6, 96, 8):
-            writer("," + lst[i])
-        writer("\n")
-        writer("H")
-        for i in range(7, 96, 8):
-            writer("," + lst[i])
+        writer(aplhaList[i])
+        for j in range(i, 96, 8):
+            writer("," + lst[j])
+
 
 def volListCreation(plateNum, targetConc, targetVol, neatVol, supVolList, dilVolList):
     for i in plateNum:
@@ -115,87 +92,90 @@ def inputCSVFileWriter(supWriteToLocation, dilWriteToLocation, supLst, dilLst):
     with open(dilWriteToLocation, "w") as DIL:
         writer = DIL.write
         plateFormatFileWriter(writer, dilLst)
+
 ################################################
 
 #trim down the octet output file into 4 plate list
-octetFilePath = "C:\codeBASE\Lynx\octet_results_sheet_1plate.csv"
+octetFilePath = "C:\codeBASE\Lynx\octet_results_sheet.csv"
 #"C:\codeBASE\Lynx\octet_report"
 
 octetQuants = []
 with open(octetFilePath, "r") as f:
     file_reader = reader(f)
     counter = 0
+    lines = (96 * numberOfPlates) + 1
     for i in file_reader:
-        if counter != 0 and counter < 385:
+        if counter != 0 and counter < lines:
             octetConc = i[12]
             counter = counter + 1
             octetQuants.append(octetConc)
         else:
             counter = counter + 1
 
-print(octetQuants)
-plate1 = []
-plate2 = []
-plate3 = []
-plate4 = []
 
-for i in range(0,96):
-    myQuant = octetQuants[i]
-    plate1.append(myQuant)
-for i in range(96,192):
-    myQuant = octetQuants[i]
-    plate2.append(myQuant)
-for i in range(192,288):
-    myQuant = octetQuants[i]
-    plate3.append(myQuant)
-for i in range(288,384):
-    myQuant = octetQuants[i]
-    plate4.append(myQuant)
+
 ################################################
 
 if numberOfPlates >= 1:
+
+    plate1 = []
+    for i in range(0,96):
+        myQuant = octetQuants[i]
+        plate1.append(myQuant)
+
     supVolListPlate1 = []
     dilVolListPlate1 = []
     volListCreation(plate1, targetConc, targetVol, neatVol, supVolListPlate1, dilVolListPlate1)
+
+    SupCSVInputP1 = "C:\codeBASE\Lynx\output_Test_files\SupCSVInputP1_" + time + ".csv"
+    DilCSVInputP1 =  "C:\codeBASE\Lynx\output_Test_files\DilCSVInputP1_" + time + ".csv"
+    inputCSVFileWriter(SupCSVInputP1, DilCSVInputP1, supVolListPlate1, dilVolListPlate1)
+
 if numberOfPlates >= 2:
+
+    plate2 = []
+    for i in range(96,192):
+        myQuant = octetQuants[i]
+        plate2.append(myQuant)
+
     supVolListPlate2 = []
     dilVolListPlate2 = []
     volListCreation(plate2, targetConc, targetVol, neatVol, supVolListPlate2, dilVolListPlate2)
+
+    SupCSVInputP2 = "C:\codeBASE\Lynx\output_Test_files\SupCSVInputP2_" + time + ".csv"
+    DilCSVInputP2 =  "C:\codeBASE\Lynx\output_Test_files\DilCSVInputP2_" + time + ".csv"
+    inputCSVFileWriter(SupCSVInputP2, DilCSVInputP2, supVolListPlate2, dilVolListPlate2)
+
 if numberOfPlates >= 3:
+
+    plate3 = []
+    for i in range(192,288):
+        myQuant = octetQuants[i]
+        plate3.append(myQuant)
+
     supVolListPlate3 = []
     dilVolListPlate3 = []
     volListCreation(plate3, targetConc, targetVol, neatVol, supVolListPlate3, dilVolListPlate3)
+
+    SupCSVInputP3 = "C:\codeBASE\Lynx\output_Test_files\SupCSVInputP3_" + time + ".csv"
+    DilCSVInputP3 =  "C:\codeBASE\Lynx\output_Test_files\DilCSVInputP3_" + time + ".csv"
+    inputCSVFileWriter(SupCSVInputP3, DilCSVInputP3, supVolListPlate3, dilVolListPlate3)
+
 if numberOfPlates >= 4:
+
+    plate4 = []
+    for i in range(288,384):
+        myQuant = octetQuants[i]
+        plate4.append(myQuant)
+    
     supVolListPlate4 = []
     dilVolListPlate4 = []
     volListCreation(plate4, targetConc, targetVol, neatVol, supVolListPlate4, dilVolListPlate4)
 
-# print(len(supVolListPlate1))
-# print(len(dilVolListPlate1))
-# print(len(supVolListPlate2))
-# print(len(dilVolListPlate2))
-# print(len(supVolListPlate3))
-# print(len(dilVolListPlate3))
-# print(len(supVolListPlate4))
-# print(len(dilVolListPlate4))
-
-
-if numberOfPlates >= 1:
-    SupCSVInputP1 = "C:\codeBASE\Lynx\output_Test_files\SupCSVInputP1_" + time + ".csv"
-    DilCSVInputP1 =  "C:\codeBASE\Lynx\output_Test_files\DilCSVInputP1_" + time + ".csv"
-    inputCSVFileWriter(SupCSVInputP1, DilCSVInputP1, supVolListPlate1, dilVolListPlate1)
-if numberOfPlates >= 2:
-    SupCSVInputP2 = "C:\codeBASE\Lynx\output_Test_files\SupCSVInputP2_" + time + ".csv"
-    DilCSVInputP2 =  "C:\codeBASE\Lynx\output_Test_files\DilCSVInputP2_" + time + ".csv"
-    inputCSVFileWriter(SupCSVInputP2, DilCSVInputP2, supVolListPlate2, dilVolListPlate2)
-if numberOfPlates >= 3:
-    SupCSVInputP3 = "C:\codeBASE\Lynx\output_Test_files\SupCSVInputP3_" + time + ".csv"
-    DilCSVInputP3 =  "C:\codeBASE\Lynx\output_Test_files\DilCSVInputP3_" + time + ".csv"
-    inputCSVFileWriter(SupCSVInputP3, DilCSVInputP3, supVolListPlate3, dilVolListPlate3)
-if numberOfPlates >= 4:
     SupCSVInputP4 = "C:\codeBASE\Lynx\output_Test_files\SupCSVInputP4_" + time + ".csv"
     DilCSVInputP4 =  "C:\codeBASE\Lynx\output_Test_files\DilCSVInputP4_" + time + ".csv"
     inputCSVFileWriter(SupCSVInputP4, DilCSVInputP4, supVolListPlate4, dilVolListPlate4)
+
 
 #build worktable path
 worktableDefaultPath = "C:\MethodManager4\Workspaces\LO507\Methods\Production\Worktables\\"
