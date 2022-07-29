@@ -112,8 +112,6 @@ with open(octetFilePath, "r") as f:
         else:
             counter = counter + 1
 
-
-
 ################################################
 
 if numberOfPlates >= 1:
@@ -188,6 +186,12 @@ if fileBasedNorm == "yes":
         "tipTypeSelected" : tipTypeSelected,
         "numberOfPlates" : numberOfPlates,
         "fileBasedNorm" : fileBasedNorm,
+        "targetConc" : targetConc,
+        "bCreateEcho" : bCreateEcho,
+        "bMix" : bMix,
+        "intMixHeightOffset" : intMixHeightOffset,
+        "mixVol" : mixVol,
+        "worktableCustomPath" : worktableCustomPath,
         "normSup1" : SupCSVInputP1,
         "normDil1" : DilCSVInputP1,
         "normSup2" : SupCSVInputP2,
@@ -195,13 +199,7 @@ if fileBasedNorm == "yes":
         "normSup3" : SupCSVInputP3,
         "normDil3" : DilCSVInputP3,
         "normSup4" : SupCSVInputP4,
-        "normDil4" : DilCSVInputP4,
-        "targetConc" : targetConc,
-        "bCreateEcho" : bCreateEcho,
-        "bMix" : bMix,
-        "intMixHeightOffset" : intMixHeightOffset,
-        "mixVol" : mixVol,
-        "worktableCustomPath" : worktableCustomPath
+        "normDil4" : DilCSVInputP4
     }
 
 else:
@@ -220,13 +218,18 @@ else:
     }
 
 
-csvOutputFilePath = "C:\codeBASE\Lynx\output_Test_files\inputForMachine_" + time + ".csv"
+recordInputFile = "C:\codeBASE\Lynx\output_Test_files\ELI_inputFileRecord" + time + ".txt"
 
-print(csvOutputFilePath)
+with open (recordInputFile, 'w', encoding='UTF8', newline='') as f:
+    for key, value in data.items(): 
+        f.write('%s:%s\n' % (key, value))
 
-with open (csvOutputFilePath, 'w', encoding='UTF8', newline='') as f:
-    w = csv.DictWriter(f, data.keys())
-    w.writeheader()
-    w.writerow(data)
+
+inputEliFile = "C:\codeBASE\Lynx\output_Test_files\ELI_inputFile.txt"
+
+with open (inputEliFile, 'w', encoding='UTF8', newline='') as f:
+    for key, value in data.items(): 
+        f.write('%s\n' % (value))
+
 
 #lynxGUIMasterLogic.py
