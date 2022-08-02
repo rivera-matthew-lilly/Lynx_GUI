@@ -41,9 +41,17 @@ def userInputForNorm():
 
 def userInputForQuant():
     octetPlateCount = int(input("How many octet file need parsed?: "))
+    octetFilePath1 = ""
+    octetFilePath2 = ""
+    octetFilePath3 = ""
+    if octetPlateCount >=1:
+        octetFilePath1 = input("Input first octet quant file: ")
+    if octetPlateCount >=2:
+        octetFilePath2 = input("Input second octet quant file: ")
+    if octetPlateCount >=3:
+        octetFilePath3 = input("Input third octet quant file: ")
 
-    return octetPlateCount
-
+    return (octetPlateCount, octetFilePath1, octetFilePath2, octetFilePath3)
 
 
 

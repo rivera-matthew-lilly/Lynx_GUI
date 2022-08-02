@@ -142,7 +142,6 @@ octetQuantsDict_Quad4 = {}
 with open(octetFilePath, "r") as f:
     file_reader = reader(f)
     counter = 0
-    lines = (96 * numberOfPlates) + 1
     for i in file_reader:
         if counter != 0: 
             wellID = i[5]
