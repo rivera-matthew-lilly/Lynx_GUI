@@ -53,6 +53,8 @@ def userInputForQuant():
 
     return (octetPlateCount, octetFilePath1, octetFilePath2, octetFilePath3)
 
+def lynxParameters():
+    pass
 
 
 #lynxGUIFunctions.py

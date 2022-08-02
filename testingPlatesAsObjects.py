@@ -117,8 +117,8 @@ class NormPlate:
         self.dilVolList = []
         NormPlate.numInstances += 1 #numInstance is the total count of class instances created
         self.count = NormPlate.numInstances #count is the object instance number
-        self.SupCSVInput = "C:\codeBASE\Lynx\output_Test_files\SupCSVInput_" + str(self.count) + time + ".csv"
-        self.DilCSVInput =  "C:\codeBASE\Lynx\output_Test_files\DilCSVInput_" + str(self.count) + time + ".csv"
+        self.SupCSVInput = "C:\codeBASE\Lynx\output_Test_files\Lynx_Input_" + time + "\SupCSVInput_" + str(self.count) + "_" + time + ".csv"
+        self.DilCSVInput =  "C:\codeBASE\Lynx\output_Test_files\Lynx_Input_" + time + "\DilCSVInput_" + str(self.count) + "_" + time + ".csv"
 
     #will accept a list of quantData already parsed into 96 indexs
     # def setQuantData(self, quantDatalst):
