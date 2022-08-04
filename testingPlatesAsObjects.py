@@ -72,26 +72,26 @@ class QuantPlate:
     
     def masterQuantParser(self):
         self.setQuantDictionary()
-        print("DICT1 ")
-        print(self.octetQuantsDict_Quad1)
-        print("DICT2 ")
-        print(self.octetQuantsDict_Quad2)
-        print("DICT3 ")
-        print(self.octetQuantsDict_Quad3)
-        print("DICT4 ")
-        print(self.octetQuantsDict_Quad4)
+        # print("DICT1 ")
+        # print(self.octetQuantsDict_Quad1)
+        # print("DICT2 ")
+        # print(self.octetQuantsDict_Quad2)
+        # print("DICT3 ")
+        # print(self.octetQuantsDict_Quad3)
+        # print("DICT4 ")
+        # print(self.octetQuantsDict_Quad4)
         self.quantListCreator(self.octetQuantsDict_Quad1, self.plate1of4, self.octetQuants_Quad1)
         self.quantListCreator(self.octetQuantsDict_Quad2, self.plate2of4, self.octetQuants_Quad2)
         self.quantListCreator(self.octetQuantsDict_Quad3, self.plate3of4, self.octetQuants_Quad3)
         self.quantListCreator(self.octetQuantsDict_Quad4, self.plate4of4, self.octetQuants_Quad4)
-        print("QUANT LIST 1 ")
-        print(self.octetQuants_Quad1)
-        print("QUANT LIST 2 ")
-        print(self.octetQuants_Quad2)
-        print("QUANT LIST 3 ")
-        print(self.octetQuants_Quad3)
-        print("QUANT LIST 4 ")
-        print(self.octetQuants_Quad4)
+        # print("QUANT LIST 1 ")
+        # print(self.octetQuants_Quad1)
+        # print("QUANT LIST 2 ")
+        # print(self.octetQuants_Quad2)
+        # print("QUANT LIST 3 ")
+        # print(self.octetQuants_Quad3)
+        # print("QUANT LIST 4 ")
+        # print(self.octetQuants_Quad4)
 
     def getOctetQuants_Quad1(self):
         return self.octetQuants_Quad1
@@ -120,24 +120,26 @@ class NormPlate:
         self.SupCSVInput = "C:\codeBASE\Lynx\output_Test_files\Lynx_Input_" + time + "\SupCSVInput_" + str(self.count) + "_" + time + ".csv"
         self.DilCSVInput =  "C:\codeBASE\Lynx\output_Test_files\Lynx_Input_" + time + "\DilCSVInput_" + str(self.count) + "_" + time + ".csv"
 
-    #will accept a list of quantData already parsed into 96 indexs
-    # def setQuantData(self, quantDatalst):
-    #     #self.quantDatalst = quantDatalst
-    #     quantDatalst = quantDatalst
+    #gets Sup CSV input file path
+    def getSupCSVInput(self):
+        return self.SupCSVInput
 
+    #gets Dil CSV input file path 
+    def getDilCSVInput(self):
+        return self.DilCSVInput
     #gets parsed quant data list
     def getQuantData(self):
         return self.quantDatalst
     
     #method used locally by other methods in class only
     def supCalc(self, quantConc):
-        # supVol = (self.targetConc/quantConc) * self.targetVol
-        # if supVol > self.targetVol:
-        #     finalSupVol = self.neatVol
-        # else:
-        #     finalSupVol = supVol
-        # finalSupVol = round(finalSupVol, 2)
-        finalSupVol = quantConc
+        supVol = (self.targetConc/quantConc) * self.targetVol
+        if supVol > self.targetVol:
+            finalSupVol = self.neatVol
+        else:
+            finalSupVol = supVol
+        finalSupVol = round(finalSupVol, 2)
+        # finalSupVol = quantConc
         return finalSupVol
 
 

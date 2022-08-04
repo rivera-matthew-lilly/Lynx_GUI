@@ -37,7 +37,7 @@ def userInputForNorm():
         intMixHeightOffset = 1
         mixVol = 100
 
-    return (sourceTypeSelected, desTypeSelected, tipTypeSelected, numberOfPlates, bCreateEcho, targetVol, targetConc, neatVol, bMix, intMixHeightOffset, mixVol)
+    return (sourceTypeSelected, desTypeSelected, tipTypeSelected, numberOfPlates, bCreateEcho, fileBasedNorm, targetVol, targetConc, neatVol, bMix, intMixHeightOffset, mixVol)
 
 def userInputForQuant():
     octetPlateCount = int(input("How many octet file need parsed?: "))
@@ -53,8 +53,7 @@ def userInputForQuant():
 
     return (octetPlateCount, octetFilePath1, octetFilePath2, octetFilePath3)
 
-def lynxParameters():
-    pass
+
 
 
 #lynxGUIFunctions.py
