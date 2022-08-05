@@ -40,18 +40,24 @@ def userInputForNorm():
     return (sourceTypeSelected, desTypeSelected, tipTypeSelected, numberOfPlates, bCreateEcho, fileBasedNorm, targetVol, targetConc, neatVol, bMix, intMixHeightOffset, mixVol)
 
 def userInputForQuant():
-    octetPlateCount = int(input("How many octet file need parsed?: "))
+    octetPlateCount = int(input("How many octet file need parsed? (Max: 3): "))
     octetFilePath1 = ""
     octetFilePath2 = ""
     octetFilePath3 = ""
+    numberOfQuads_fromOctetPlate1 = 0
+    numberOfQuads_fromOctetPlate2 = 0
+    numberOfQuads_fromOctetPlate3 = 0
     if octetPlateCount >=1:
         octetFilePath1 = input("Input first octet quant file: ")
+        numberOfQuads_fromOctetPlate1 = int(input("How many 96 well plate have quants in this file? (Max 4): "))
     if octetPlateCount >=2:
         octetFilePath2 = input("Input second octet quant file: ")
+        numberOfQuads_fromOctetPlate2 = int(input("How many 96 well plate have quants in this file? (Max 4): "))
     if octetPlateCount >=3:
         octetFilePath3 = input("Input third octet quant file: ")
+        numberOfQuads_fromOctetPlate3 = int(input("How many 96 well plate have quants in this file? (Max 4): "))
 
-    return (octetPlateCount, octetFilePath1, octetFilePath2, octetFilePath3)
+    return (octetPlateCount, octetFilePath1, numberOfQuads_fromOctetPlate1, octetFilePath2, numberOfQuads_fromOctetPlate2, octetFilePath3, numberOfQuads_fromOctetPlate3)
 
 
 
