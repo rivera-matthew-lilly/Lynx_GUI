@@ -127,7 +127,7 @@ class NormPlate:
         self.count = NormPlate.numInstances #count is the object instance number
         self.SupCSVInput = "C:\codeBASE\Lynx\output_Test_files\Lynx_Input_" + time + "\SupCSVInput_" + str(self.count) + "_" + time + ".csv"
         self.DilCSVInput =  "C:\codeBASE\Lynx\output_Test_files\Lynx_Input_" + time + "\DilCSVInput_" + str(self.count) + "_" + time + ".csv"
-        self.normBarcode = "NormPlate" + str(self.count)
+        #self.normBarcode = "NormPlate" #+ str(self.count)
 
     #gets Sup CSV input file path
     def getSupCSVInput(self):

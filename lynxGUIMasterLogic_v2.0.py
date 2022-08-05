@@ -56,8 +56,10 @@ if octetPlateCount >= 1:
         normPlate1_CSVDilFilePath = normPlate1.getDilCSVInput()
         lynxParametersDict["normSup1"] = normPlate1_CSVSupFilePath
         lynxParametersDict["normDil1"] = normPlate1_CSVDilFilePath
-        normPlate1_Barcode = quantPlate1.octetBarcode + "_" + normPlate1.normBarcode
-        print(normPlate1_Barcode)
+        normSup1_Barcode = quantPlate1.octetBarcode + "_Sup_1"
+        normDil1_Barcode = quantPlate1.octetBarcode + "_Dil_1"
+        lynxParametersDict["normSup1_Barcode"] = normSup1_Barcode
+        lynxParametersDict["normDil1_Barcode"] = normDil1_Barcode
 
     if numberOfQuads_fromOctetPlate1 >= 2:
         #quant plat 1 & norm plate 2
@@ -70,8 +72,10 @@ if octetPlateCount >= 1:
         normPlate2_CSVDilFilePath = normPlate2.getDilCSVInput()
         lynxParametersDict["normSup2"] = normPlate2_CSVSupFilePath
         lynxParametersDict["normDil2"] = normPlate2_CSVDilFilePath
-        normPlate2_Barcode = quantPlate1.octetBarcode + "_" + normPlate2.normBarcode
-        print(normPlate2_Barcode)
+        normSup2_Barcode = quantPlate1.octetBarcode + "_Sup_2"
+        normDil2_Barcode = quantPlate1.octetBarcode + "_Dil_2"
+        lynxParametersDict["normSup2_Barcode"] = normSup2_Barcode
+        lynxParametersDict["normDil2_Barcode"] = normDil2_Barcode
 
     if numberOfQuads_fromOctetPlate1 >= 3:
         #quant plat 1 & norm plate 3
@@ -84,8 +88,10 @@ if octetPlateCount >= 1:
         normPlate3_CSVDilFilePath = normPlate3.getDilCSVInput()
         lynxParametersDict["normSup3"] = normPlate3_CSVSupFilePath
         lynxParametersDict["normDil3"] = normPlate3_CSVDilFilePath
-        normPlate3_Barcode = quantPlate1.octetBarcode + "_" + normPlate3.normBarcode
-        print(normPlate3_Barcode)
+        normSup3_Barcode = quantPlate1.octetBarcode + "_Sup_3"
+        normDil3_Barcode = quantPlate1.octetBarcode + "_Dil_3"
+        lynxParametersDict["normSup3_Barcode"] = normSup3_Barcode
+        lynxParametersDict["normDil3_Barcode"] = normDil3_Barcode
 
     if numberOfQuads_fromOctetPlate1 >= 4:
         #quant plat 1 & norm plate 4
@@ -98,8 +104,10 @@ if octetPlateCount >= 1:
         normPlate4_CSVDilFilePath = normPlate4.getDilCSVInput()
         lynxParametersDict["normSup4"] = normPlate4_CSVSupFilePath
         lynxParametersDict["normDil4"] = normPlate4_CSVDilFilePath
-        normPlate4_Barcode = quantPlate1.octetBarcode + "_" + normPlate4.normBarcode
-        print(normPlate4_Barcode)
+        normSup4_Barcode = quantPlate1.octetBarcode + "_Sup_4"
+        normDil4_Barcode = quantPlate1.octetBarcode + "_Dil_4"
+        lynxParametersDict["normSup4_Barcode"] = normSup4_Barcode
+        lynxParametersDict["normDil4_Barcode"] = normDil4_Barcode
 
 if octetPlateCount >= 2:
     quantPlate2 = QuantPlate("QuantPlate2", octetFilePath2,numberOfQuads_fromOctetPlate2)
@@ -117,8 +125,10 @@ if octetPlateCount >= 2:
         normPlate5_CSVDilFilePath = normPlate5.getDilCSVInput()
         lynxParametersDict["normSup5"] = normPlate5_CSVSupFilePath
         lynxParametersDict["normDil5"] = normPlate5_CSVDilFilePath
-        normPlate5_Barcode = quantPlate2.octetBarcode + "_" + normPlate5.normBarcode
-        print(normPlate5_Barcode)
+        normSup5_Barcode = quantPlate2.octetBarcode + "_Sup_1"
+        normDil5_Barcode = quantPlate2.octetBarcode + "_Dil_1"
+        lynxParametersDict["normSup5_Barcode"] = normSup5_Barcode
+        lynxParametersDict["normDil5_Barcode"] = normDil5_Barcode
 
     if numberOfQuads_fromOctetPlate2 >= 2:
         #quant plat 2 & norm plate 2
@@ -131,8 +141,10 @@ if octetPlateCount >= 2:
         normPlate6_CSVDilFilePath = normPlate6.getDilCSVInput() 
         lynxParametersDict["normSup6"] = normPlate6_CSVSupFilePath
         lynxParametersDict["normDil6"] = normPlate6_CSVDilFilePath
-        normPlate6_Barcode = quantPlate2.octetBarcode + "_" + normPlate6.normBarcode
-        print(normPlate6_Barcode)
+        normSup6_Barcode = quantPlate2.octetBarcode + "_Sup_2"
+        normDil6_Barcode = quantPlate2.octetBarcode + "_Dil_2"
+        lynxParametersDict["normSup6_Barcode"] = normSup6_Barcode
+        lynxParametersDict["normDil6_Barcode"] = normDil6_Barcode
 
     if numberOfQuads_fromOctetPlate2 >= 3:
         #quant plat 2 & norm plate 3
@@ -145,8 +157,10 @@ if octetPlateCount >= 2:
         normPlate7_CSVDilFilePath = normPlate7.getDilCSVInput()
         lynxParametersDict["normSup7"] = normPlate7_CSVSupFilePath
         lynxParametersDict["normDil7"] = normPlate7_CSVDilFilePath
-        normPlate7_Barcode = quantPlate2.octetBarcode + "_" + normPlate7.normBarcode
-        print(normPlate7_Barcode)
+        normSup7_Barcode = quantPlate2.octetBarcode + "_Sup_3"
+        normDil7_Barcode = quantPlate2.octetBarcode + "_Dil_3"
+        lynxParametersDict["normSup7_Barcode"] = normSup7_Barcode
+        lynxParametersDict["normDil7_Barcode"] = normDil7_Barcode
 
     if numberOfQuads_fromOctetPlate2 >= 4:
         #quant plat 2 & norm plate 4
@@ -159,8 +173,10 @@ if octetPlateCount >= 2:
         normPlate8_CSVDilFilePath = normPlate8.getDilCSVInput()  
         lynxParametersDict["normSup8"] = normPlate8_CSVSupFilePath
         lynxParametersDict["normDil8"] = normPlate8_CSVDilFilePath
-        normPlate8_Barcode = quantPlate2.octetBarcode + "_" + normPlate8.normBarcode
-        print(normPlate8_Barcode)  
+        normSup8_Barcode = quantPlate2.octetBarcode + "_Sup_4"
+        normDil8_Barcode = quantPlate2.octetBarcode + "_Dil_4"
+        lynxParametersDict["normSup8_Barcode"] = normSup8_Barcode
+        lynxParametersDict["normDil8_Barcode"] = normDil8_Barcode
 
 if octetPlateCount >=3:
     quantPlate3 = QuantPlate("QuantPlate3", octetFilePath3, numberOfQuads_fromOctetPlate3)
@@ -178,8 +194,10 @@ if octetPlateCount >=3:
         normPlate9_CSVDilFilePath = normPlate9.getDilCSVInput()
         lynxParametersDict["normSup9"] = normPlate9_CSVSupFilePath
         lynxParametersDict["normDil9"] = normPlate9_CSVDilFilePath
-        normPlate9_Barcode = quantPlate3.octetBarcode + "_" + normPlate9.normBarcode
-        print(normPlate9_Barcode)
+        normSup9_Barcode = quantPlate3.octetBarcode + "_Sup_1"
+        normDil9_Barcode = quantPlate3.octetBarcode + "_Dil_1"
+        lynxParametersDict["normSup9_Barcode"] = normSup9_Barcode
+        lynxParametersDict["normDil9_Barcode"] = normDil9_Barcode
 
     if numberOfQuads_fromOctetPlate3 >= 2:
         #quant plat 3 & norm plate 2
@@ -192,8 +210,10 @@ if octetPlateCount >=3:
         normPlate10_CSVDilFilePath = normPlate10.getDilCSVInput()
         lynxParametersDict["normSup10"] = normPlate10_CSVSupFilePath
         lynxParametersDict["normDil10"] = normPlate10_CSVDilFilePath
-        normPlate10_Barcode = quantPlate3.octetBarcode + "_" + normPlate10.normBarcode
-        print(normPlate10_Barcode)
+        normSup10_Barcode = quantPlate3.octetBarcode + "_Sup_2"
+        normDil10_Barcode = quantPlate3.octetBarcode + "_Dil_2"
+        lynxParametersDict["normSup10_Barcode"] = normSup10_Barcode
+        lynxParametersDict["normDil10_Barcode"] = normDil10_Barcode
 
     if numberOfQuads_fromOctetPlate3 >= 3:
         #quant plat 3 & norm plate 3
@@ -206,8 +226,11 @@ if octetPlateCount >=3:
         normPlate11_CSVDilFilePath = normPlate11.getDilCSVInput()
         lynxParametersDict["normSup11"] = normPlate11_CSVSupFilePath
         lynxParametersDict["normDil11"] = normPlate11_CSVDilFilePath
-        normPlate11_Barcode = quantPlate3.octetBarcode + "_" + normPlate11.normBarcode
-        print(normPlate11_Barcode)
+        normSup11_Barcode = quantPlate3.octetBarcode + "_Sup_3"
+        normDil11_Barcode = quantPlate3.octetBarcode + "_Dil_3"
+        lynxParametersDict["normSup11_Barcode"] = normSup11_Barcode
+        lynxParametersDict["normDil11_Barcode"] = normDil11_Barcode
+        
 
     if numberOfQuads_fromOctetPlate3 >= 4:
         #quant plat 3 & norm plate 4
@@ -220,11 +243,13 @@ if octetPlateCount >=3:
         normPlate12_CSVDilFilePath = normPlate12.getDilCSVInput()
         lynxParametersDict["normSup12"] = normPlate12_CSVSupFilePath
         lynxParametersDict["normDil12"] = normPlate12_CSVDilFilePath
-        normPlate12_Barcode = quantPlate3.octetBarcode + "_" + normPlate12.normBarcode
-        print(normPlate12_Barcode)
+        normSup12_Barcode = quantPlate3.octetBarcode + "_Sup_4"
+        normDil12_Barcode = quantPlate3.octetBarcode + "_Dil_4"
+        lynxParametersDict["normSup12_Barcode"] = normSup12_Barcode
+        lynxParametersDict["normDil12_Barcode"] = normDil12_Barcode
 
-# for key, item in lynxParametersDict.items():
-#     print(key + ": " + str(item))
+for key, item in lynxParametersDict.items():
+    print(key + ": " + str(item))
 
 
 
