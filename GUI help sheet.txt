@@ -1,3 +1,6 @@
+FILE BASED NORM?
+
+
 "How many octet files need parsed (Max 3 files)?"
 [Numerical choice of 1,2,3, or 4]
 
@@ -19,7 +22,13 @@
 	"How many active quads?
 	[Numerical choice of 1,2,3, or 4]
 
+"Target volume (100-200uL):"
 
+"Target concentration (1-200ug/mL):"
+
+"Volume for neat transfers (75-200uL):"
+
+################################################################
 
 
 "Select source plate type:"
@@ -29,3 +38,11 @@
 "Select tip type:"
 
 ??"Enter Number of source plates to normalize:"??
+
+"Transfer to echo plate?"
+
+"Mix plates (8 cycles) after normalization ('yes' or 'no')?"
+
+"Mixing height offset (Default 1mm)?:"
+
+"Mix Volume (Defualt 100ul)?"
