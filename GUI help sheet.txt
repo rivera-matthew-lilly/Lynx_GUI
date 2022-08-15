@@ -1,0 +1,31 @@
+"How many octet files need parsed (Max 3 files)?"
+[Numerical choice of 1,2,3, or 4]
+
+	"Select first octet quant file?"
+	[path/dialoge box]
+
+	"How many active quads?
+	[Numerical choice of 1,2,3, or 4]
+	
+	"Select second octet quant file?"
+	[path/dialoge box] - gray this out if user selects 1 for above?
+
+	"How many active quads?
+	[Numerical choice of 1,2,3, or 4]
+
+	"Select third octet quant file?"
+	[path/dialoge box] - gray this out if user selects 2 for above?
+
+	"How many active quads?
+	[Numerical choice of 1,2,3, or 4]
+
+
+
+
+"Select source plate type:"
+
+"Select destinaton plate type:"
+
+"Select tip type:"
+
+??"Enter Number of source plates to normalize:"??
